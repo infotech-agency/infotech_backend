@@ -98,7 +98,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://infotechagency.in",
-  "https://admin.infotechagency.in",
+  "https://admin.infotechagency.com",
   "http://localhost:5173", // development
 ];
 // app.use(
