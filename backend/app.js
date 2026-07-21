@@ -96,13 +96,33 @@ const sendResponse = require('./utils/sendResponse');
 const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
+const allowedOrigins = [
+  "https://infotechagency.in",
+  "https://admin.infotechagency.in",
+  "http://localhost:5173", // development
+];
 // app.use(
 //   cors({
 //     origin: process.env.FRONTEND_ORIGIN, // e.g. http://localhost:5173
 //     credentials: true, // required so the browser sends/receives the auth cookie
 //   })
 // );
- app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow Postman/server-to-server requests (no Origin header)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
+//  app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
