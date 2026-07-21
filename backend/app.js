@@ -93,7 +93,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const Category = require('./models/Category');
 const sendResponse = require('./utils/sendResponse');
-const requireAuth = require('../backend/middlewares/requireAuth');
+const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
 // app.use(
