@@ -94,12 +94,14 @@ const cookieParser = require('cookie-parser');
 const Category = require('./models/Category');
 const sendResponse = require('./utils/sendResponse');
 const requireAuth = require('./middlewares/requireAuth');
+
 const app = express();
 
 const allowedOrigins = [
   "https://infotechagency.in",
   "https://admin.infotechagency.com",
-  "http://localhost:5173", // development
+  "http://localhost:5173",
+  "http://localhost:3000" // development
 ];
 // app.use(
 //   cors({
@@ -152,6 +154,7 @@ app.use('/api/awards', require('./routes/award.routes'));
 app.use('/api/technologies', require('./routes/technology.routes'));
 app.use('/api/counters', require('./routes/counter.routes'));
 app.use('/api/media', require('./routes/media.routes'));
+app.use('/api/invoice', require('./routes/invoice.routes'));
 
 //categories
 app.use('/api/categories', require('./routes/category.routes'));
