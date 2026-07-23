@@ -98,7 +98,7 @@ const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
 const allowedOrigins = [
-  "https://infotechagency.in",
+  "https://infotechagency.com",
   "https://admin.infotechagency.com",
   "http://localhost:5173",
   "http://localhost:3000" // development
