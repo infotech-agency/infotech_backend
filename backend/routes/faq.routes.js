@@ -2,6 +2,7 @@ const router = require('express').Router();
 const ctrl = require('../controllers/faq.controller');
 
 router.get('/', ctrl.getAllFaqs);
+router.get('/grouped', ctrl.getFaqsGroupedByCategory); 
 router.get('/:id', ctrl.getFaqById);
 router.post('/', ctrl.createFaq);
 router.put('/:id', ctrl.updateFaq);
