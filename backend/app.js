@@ -66,46 +66,11 @@ app.use('/api/technologies', require('./routes/technology.routes'));
 app.use('/api/counters', require('./routes/counter.routes'));
 app.use('/api/media', require('./routes/media.routes'));
 app.use('/api/invoice', require('./routes/invoice.routes'));
-
+app.use('/api/project-categories', require('./routes/project.category.routes'));
 //categories
 app.use('/api/categories', require('./routes/category.routes'));
 app.use('/api/faq-categories', require('./routes/faqCategory.routes'));
-// Example: protect an entire router with requireAuth (apply where you need admin-only writes)
-// app.use('/api/settings', requireAuth, require('./routes/settings.routes'));
 
-// const getServicesMenu = async (req, res) => {
-//   try {
-//     const categories = await Category.find({
-//       status: "published"
-//     }).sort({ order: 1 });
-
-//     console.log(categories);
-
-//     const data = await Promise.all(
-//       categories.map(async (cat) => {
-//         const services = await Service.find({
-//           category: cat._id,
-//           status: "published"
-//         }).select("title slug");
-
-//         console.log("data", data)
-//         return {
-//           _id: cat._id,
-//           name: cat.name,
-//           slug: cat.slug,
-//           services
-//         };
-//       })
-//     );
-
-//     // sendResponse(res, 200, true, "Menu fetched", data);
-//   } catch (err) {
-//     // sendResponse(res, 500, false, err.message);
-//     console.log(err)
-//   }
-// };
-
-// getServicesMenu();
 
 // 404 handler
 app.use((req, res) => {
