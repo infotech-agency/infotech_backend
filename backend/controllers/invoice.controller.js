@@ -56,7 +56,7 @@ const calcSubtotal = (services = []) =>
 // };
 exports.createInvoice = async (req, res) => {
   try {
-    const { customerName, companyName, email, phone, services, billingType } = req.body;
+    const { customerName, companyName, email, phone, services, billingType,  sellerGstNumber, customerGstNumber, } = req.body;
 
     if (!Array.isArray(services) || services.length === 0) {
       return res.status(400).json({ success: false, message: "At least one service is required" });
@@ -72,6 +72,8 @@ exports.createInvoice = async (req, res) => {
       invoiceNumber,
       customerName,
       companyName,
+      customerGstNumber,
+  sellerGstNumber,
       email,
       phone,
       services,
@@ -186,7 +188,7 @@ exports.getInvoiceById = async (req, res) => {
 
 exports.updateInvoice = async (req, res) => {
   try {
-    const { customerName, companyName, email, phone, services, billingType } = req.body;
+    const { customerName, companyName, email, phone, services, billingType, sellerGstNumber, customerGstNumber } = req.body;
 
     if (!Array.isArray(services) || services.length === 0) {
       return res.status(400).json({ success: false, message: "At least one service is required" });
@@ -199,7 +201,7 @@ exports.updateInvoice = async (req, res) => {
 
     const invoice = await Invoice.findByIdAndUpdate(
       req.params.id,
-      { customerName, companyName, email, phone, services, amount: subtotal, billingType, gstPercentage, gstAmount, totalAmount },
+      { customerName, companyName, email, phone, services, amount: subtotal, billingType, gstPercentage, gstAmount, totalAmount,    sellerGstNumber, customerGstNumber },
       { new: true, runValidators: true }
     );
 

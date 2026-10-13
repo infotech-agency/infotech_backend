@@ -3,7 +3,8 @@ const Project = require('../models/Project');
 const sendResponse = require('../utils/sendResponse');
 const { uploadToCloudinary, deleteFromCloudinary } = require('../utils/cloudinaryHelper');
 const { makeUniqueSlug } = require('../utils/slugHelper');
-
+const mongoose = require('mongoose');
+// const ProjectCategory = require('../models/ProjectCategory');
 const getIconFile = (req) => (req.files && req.files.icon && req.files.icon[0]) || req.file || null;
 
 const validateSchemaJson = (str) => {
@@ -13,6 +14,7 @@ const validateSchemaJson = (str) => {
 
 exports.getAllProjectCategories = async (req, res) => {
   try {
+    
     const query = {};
     if (req.query.status) query.status = req.query.status;
     const list = await ProjectCategory.find(query).sort({ order: 1, name: 1 });
