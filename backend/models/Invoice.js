@@ -76,10 +76,12 @@ const invoiceSchema = new mongoose.Schema(
 
     // Seller (your) details
     sellerGstNumber: gstinField,
+    sellerAddress:{type:String, trim:true},
 
     // Client details
     customerName: { type: String, required: true, trim: true },
     companyName: { type: String, trim: true, default: "" },
+    clientAddress:{type:String, trim:true},
     customerGstNumber: gstinField,
     email: { type: String, trim: true, lowercase: true, default: "" },
     phone: { type: String, required: true, trim: true },

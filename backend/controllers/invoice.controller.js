@@ -56,7 +56,7 @@ const calcSubtotal = (services = []) =>
 // };
 exports.createInvoice = async (req, res) => {
   try {
-    const { customerName, companyName, email, phone, services, billingType,  sellerGstNumber, customerGstNumber, } = req.body;
+    const { customerName, companyName, email, phone, services, billingType,  sellerGstNumber, customerGstNumber,sellerAddress, clientAddress } = req.body;
 
     if (!Array.isArray(services) || services.length === 0) {
       return res.status(400).json({ success: false, message: "At least one service is required" });
@@ -82,6 +82,8 @@ exports.createInvoice = async (req, res) => {
       gstPercentage,
       gstAmount,
       totalAmount,
+      sellerAddress,
+      clientAddress
     });
 
     res.status(201).json({ success: true, message: "Invoice created successfully", data: invoice });
@@ -188,7 +190,8 @@ exports.getInvoiceById = async (req, res) => {
 
 exports.updateInvoice = async (req, res) => {
   try {
-    const { customerName, companyName, email, phone, services, billingType, sellerGstNumber, customerGstNumber } = req.body;
+    const { customerName, companyName, email, phone, services, billingType, sellerGstNumber, customerGstNumber, sellerAddress,
+      clientAddress } = req.body;
 
     if (!Array.isArray(services) || services.length === 0) {
       return res.status(400).json({ success: false, message: "At least one service is required" });
@@ -201,7 +204,8 @@ exports.updateInvoice = async (req, res) => {
 
     const invoice = await Invoice.findByIdAndUpdate(
       req.params.id,
-      { customerName, companyName, email, phone, services, amount: subtotal, billingType, gstPercentage, gstAmount, totalAmount,    sellerGstNumber, customerGstNumber },
+      { customerName, companyName, email, phone, services, amount: subtotal, billingType, gstPercentage, gstAmount, totalAmount,    sellerGstNumber, customerGstNumber, sellerAddress,
+      clientAddress },
       { new: true, runValidators: true }
     );
 
@@ -211,7 +215,7 @@ exports.updateInvoice = async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-};
+};  
 
 
 // Delete Invoice
