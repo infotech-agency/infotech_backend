@@ -3,7 +3,7 @@
 A complete Content Management System backend built with Node.js, Express.js, MongoDB, and Cloudinary.
 
 ---
-
+## Structure
 ## Folder Structure
 
 ```
